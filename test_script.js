@@ -24,14 +24,12 @@ client.connect((err) => {
       return console.error("error running query", err);
     }
     for (let i = 0; i < result.rows.length; i++) {
-      let birthdayString = result.rows[i].birthdate.toString()
-      let birthday = birthdayString.slice(0, 16);
-      console.log((i + 1) + ': ' + result.rows[i].first_name + ' ' + result.rows[i].last_name + ', born ' + birthday);
+      var birthdayString = result[i].birthdate.toString()
+      var year = birthdayString.slice(11, 15)
+      var month = birthdayString.slice(4, 7)
+      var day = birthdayString.slice(8, 10);
+      console.log((i + 1) + ': ' + result[i].first_name + ' ' + result[i].last_name + ', born ' + year + '-' + month + '-' + day);
     }
     client.end();
   });
 });
-
-module.exports = {
-  client
-};
